@@ -41,7 +41,7 @@ Update_Upgrade_Packages(){
 Install_Bin(){
 	wget https://github.com/freakinyy/sing-box_server_installer_for_ubuntu/raw/main/sing-box_bin_installer.sh%40amd64 -O sing-box_bin_installer.sh
 	mv sing-box_bin_installer.sh /usr/bin
-	chmod +x /usr/bin/ssing-box_bin_installer.sh
+	chmod +x /usr/bin/sing-box_bin_installer.sh
 	sing-box_bin_installer.sh install
 }
 
