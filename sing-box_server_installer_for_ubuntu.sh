@@ -46,7 +46,7 @@ Install_Bin(){
 }
 
 Uninstall_Bin(){
-	sing-box_installer.sh uninstall
+	sing-box_bin_installer.sh uninstall
 	rm -f /usr/bin/sing-box_bin_installer.sh
 }
 
@@ -223,8 +223,8 @@ Show_Client_Outbound(){
 	local public_key=$1
 	local short_id=$2
 	local uuid=$3
-	local $server=$(get_my_ip)
-	echo << EOF
+	local server=$(get_my_ip)
+	cat << EOF
 {
 	"type": "vless",
 	"tag": "out-vless",
@@ -343,7 +343,6 @@ Do_Install(){
 	Create_Service
 	Add_to_Crontab
 	service sing-box_server start
-	Show_Client_Outbound
 	echo "All Install Done!"
 	echo "#########################################################################"
 }
