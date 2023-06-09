@@ -1,32 +1,34 @@
 #!/bin/sh /etc/rc.common
-START=96
+START=95
 
-conf_folder="/etc/sing-box_server"
-pid_folder="/var/run/sing-box_server"
+CONF_FOLDER="/etc/sing-box_server"
+PID_FOLDER="/var/run/sing-box_server"
+BIN_LOG_FOLDER="/var/log/sing-box_server"
 
 do_start() {
-	[ -d $conf_folder/ ] || return 2
-	json_files=$(ls $conf_folder/ | grep ".json$" )
-	[ -d $pid_folder/ ] && do_stop
-	mkdir -p $pid_folder/
+	[ -d $CONF_FOLDER/ ] || return 2
+	json_files=$(ls $CONF_FOLDER/ | grep ".json$" )
+	[ -d $PID_FOLDER/ ] && do_stop
+	mkdir -p $PID_FOLDER/
+	mkdir -p $BIN_LOG_FOLDER/
 	#ulimit -n 51200
 	process_num=1
 	for json_file in $json_files; do
 		pre_name=$(echo $json_file | sed "s/\.json//g")
-		nohup sing-box run -c $conf_folder/$json_file  > /dev/null 2>&1 &
-		echo $! > $pid_folder/$pre_name.pid
+		nohup sing-box run -c $CONF_FOLDER/$json_file >> $BIN_LOG_FOLDER/$pre_name.log 2>&1 &
+		echo $! > $PID_FOLDER/$pre_name.pid
 	done
 }
 
 do_stop() {
-	[ -d $pid_folder/ ] || return 2
-	pid_files=$(ls $pid_folder/ | grep ".pid" )
+	[ -d $PID_FOLDER/ ] || return 2
+	pid_files=$(ls $PID_FOLDER/ | grep ".pid" )
 	[ -z "$pid_files" ] && return 2
 	for pid_file in $pid_files; do
-		pid=$(cat $pid_folder/$pid_file)
+		pid=$(cat $PID_FOLDER/$pid_file)
 		kill $pid
 	done
-	rm -rf $pid_folder/
+	rm -rf $PID_FOLDER/
 }
 
 start() {
