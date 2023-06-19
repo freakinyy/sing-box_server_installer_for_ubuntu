@@ -180,6 +180,7 @@ Create_Json(){
 			"tag": "in-vless",
 			"listen": "::",
 			"listen_port": 443,
+			"udp_timeout": 30,
 			"tcp_fast_open": true,
 			"users": [
 				{

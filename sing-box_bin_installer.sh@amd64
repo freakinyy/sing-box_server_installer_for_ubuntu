@@ -50,8 +50,8 @@ install_sing_box(){
 		wget https://github.com/"$org"/"$repo"/releases/download/v"$version_new"/"$repo"-"$version_new"-"$kernel_name"-"$machine_type".tar.gz -O "$repo"-"$version_new"-"$kernel_name"-"$machine_type".tar.gz > /dev/null 2>&1
 		tar xvf "$repo"-"$version_new"-"$kernel_name"-"$machine_type".tar.gz
 		cd $tmp_dir/"$repo"-"$version_new"-"$kernel_name"-"$machine_type"
-		service sing-box_server stop > /dev/null 2>&1
-		service sing-box_tproxy stop > /dev/null 2>&1
+		/etc/init.d/sing-box_server stop > /dev/null 2>&1
+		/etc/init.d/sing-box_tproxy stop > /dev/null 2>&1
 		for bin in $bins
 		do
 			chmod +x $bin
@@ -60,8 +60,8 @@ install_sing_box(){
 				mv -f $bin $path_install_to/$bin
 			fi
 		done
-		service sing-box_tproxy start > /dev/null 2>&1
-		service sing-box_server start > /dev/null 2>&1
+		/etc/init.d/sing-box_tproxy start > /dev/null 2>&1
+		/etc/init.d/sing-box_server start > /dev/null 2>&1
 		rm -rf $tmp_dir
 	fi
 }
