@@ -29,7 +29,7 @@ get_version_from_bin(){
 	echo $version
 }
 
-install_sing_box(){
+install_bin(){
 	local need_update="0"
 	local org="SagerNet"
 	local repo="sing-box"
@@ -82,7 +82,7 @@ install(){
 		$pm install tar -y
 	fi
 
-	install_sing_box
+	install_bin
 }
 
 uninstall(){
@@ -94,7 +94,7 @@ uninstall(){
 }
 
 update(){
-	install_sing_box
+	install_bin
 }
 
 case "$1" in
