@@ -340,7 +340,6 @@ Do_Install(){
 	Install_Bin
 	Install_Rng_tools
 	Install_BBR
-	Optimize_Parameters
 	Create_Json
 	Create_Service
 	Add_to_Crontab

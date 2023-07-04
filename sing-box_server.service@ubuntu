@@ -12,33 +12,33 @@
 ### END INIT INFO
 
 CONF_FOLDER="/etc/sing-box_server"
-PID_FOLDER="/var/run/sing-box_server"
+RUN_FOLDER="/var/run/sing-box_server"
 BIN_LOG_FOLDER="/var/log/sing-box_server"
 
 do_start() {
 	[ -d $CONF_FOLDER/ ] || return 2
 	json_files=$(ls $CONF_FOLDER/ | grep ".json$" )
-	[ -d $PID_FOLDER/ ] && do_stop
-	mkdir -p $PID_FOLDER/
+	[ -d $RUN_FOLDER/ ] && do_stop
+	mkdir -p $RUN_FOLDER/
 	mkdir -p $BIN_LOG_FOLDER/
 	#ulimit -n 51200
 	process_num=1
 	for json_file in $json_files; do
 		pre_name=$(echo $json_file | sed "s/\.json//g")
 		nohup sing-box run -c $CONF_FOLDER/$json_file >> $BIN_LOG_FOLDER/$pre_name.log 2>&1 &
-		echo $! > $PID_FOLDER/$pre_name.pid
+		echo $! > $RUN_FOLDER/$pre_name.pid
 	done
 }
 
 do_stop() {
-	[ -d $PID_FOLDER/ ] || return 2
-	pid_files=$(ls $PID_FOLDER/ | grep ".pid" )
+	[ -d $RUN_FOLDER/ ] || return 2
+	pid_files=$(ls $RUN_FOLDER/ | grep ".pid" )
 	[ -z "$pid_files" ] && return 2
 	for pid_file in $pid_files; do
-		pid=$(cat $PID_FOLDER/$pid_file)
+		pid=$(cat $RUN_FOLDER/$pid_file)
 		kill $pid
 	done
-	rm -rf $PID_FOLDER/
+	rm -rf $RUN_FOLDER/
 }
 
 case "$1" in
