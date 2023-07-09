@@ -180,7 +180,6 @@ Create_Json(){
 			"tag": "in-vless",
 			"listen": "::",
 			"listen_port": 443,
-			"udp_timeout": 30,
 			"tcp_fast_open": true,
 			"users": [
 				{
@@ -232,6 +231,7 @@ Show_Client_Outbound(){
 	"tag": "out-vless",
 	"server": "$server",
 	"server_port": 443,
+	"tcp_fast_open": true,
 	"uuid": "$uuid",
 	"flow": "xtls-rprx-vision",
 	"tls": {
