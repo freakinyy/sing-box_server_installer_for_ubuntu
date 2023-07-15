@@ -169,10 +169,21 @@ Create_Json(){
 	cat >> /etc/sing-box_server/vless_reality.json <<EOF
 {
 	"log": {
-		"disabled": true,
+		"disabled": false,
 		"level": "warn",
-		"output": "",
+		"output": "/var/log/sing-box_server/vless_reality.log",
 		"timestamp": true
+	},
+	"route": {
+		"rules": [
+			{
+				"inbound": [
+					"in-vless"
+				],
+				"outbound": "out-direct"
+			}
+		],
+		"final": "out-direct"
 	},
 	"inbounds": [
 		{
@@ -189,11 +200,11 @@ Create_Json(){
 			],
 			"tls": {
 				"enabled": true,
-				"server_name": "www.microsoft.com",
+				"server_name": "www.amazon.com",
 				"reality": {
 					"enabled": true,
 					"handshake": {
-						"server": "www.microsoft.com",
+						"server": "www.amazon.com",
 						"server_port": 443
 					},
 					"private_key": "$private_key",
@@ -237,7 +248,7 @@ Show_Client_Outbound(){
 	"tls": {
 		"enabled": true,
 		"disable_sni": false,
-		"server_name": "www.microsoft.com",
+		"server_name": "www.amazon.com",
 		"insecure": false,
 		"utls": {
 			"enabled": true,

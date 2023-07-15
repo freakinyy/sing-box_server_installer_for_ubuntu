@@ -15,7 +15,7 @@ do_start() {
 	process_num=1
 	for json_file in $json_files; do
 		pre_name=$(echo $json_file | sed "s/\.json//g")
-		nohup sing-box run -c $CONF_FOLDER/$json_file >> $BIN_LOG_FOLDER/$pre_name.log 2>&1 &
+		nohup sing-box run -c $CONF_FOLDER/$json_file > /dev/null 2>&1 &
 		echo $! > $RUN_FOLDER/$pre_name.pid
 	done
 }
@@ -29,6 +29,7 @@ do_stop() {
 		kill $pid
 	done
 	rm -rf $RUN_FOLDER/
+	rm -rf $BIN_LOG_FOLDER/
 }
 
 start() {
