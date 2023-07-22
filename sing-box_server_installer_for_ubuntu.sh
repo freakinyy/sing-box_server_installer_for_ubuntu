@@ -349,8 +349,6 @@ Do_Install(){
 	service sing-box_server stop
 	Update_Upgrade_Packages
 	Install_Bin
-	Install_Rng_tools
-	Install_BBR
 	Create_Json
 	Create_Service
 	Add_to_Crontab
@@ -391,7 +389,11 @@ optimizeparameters)	Optimize_Parameters
 					;;
 reinstallservice)	Do_Re_InstallService
 					;;
-*)					echo "Usage: install|uninstall|optimizeparameters|reinstallservice"
+rngtools)			Install_Rng_tools
+					;;
+bbr)				Install_BBR
+					;;
+*)					echo "Usage: install|uninstall|optimizeparameters|reinstallservice|rngtools|bbr"
 					exit 2
 					;;
 esac
