@@ -200,11 +200,11 @@ Create_Json(){
 			],
 			"tls": {
 				"enabled": true,
-				"server_name": "www.amazon.com",
+				"server_name": "d1.awsstatic.com",
 				"reality": {
 					"enabled": true,
 					"handshake": {
-						"server": "www.amazon.com",
+						"server": "d1.awsstatic.com",
 						"server_port": 443
 					},
 					"private_key": "$private_key",
@@ -248,7 +248,7 @@ Show_Client_Outbound(){
 	"tls": {
 		"enabled": true,
 		"disable_sni": false,
-		"server_name": "www.amazon.com",
+		"server_name": "d1.awsstatic.com",
 		"insecure": false,
 		"utls": {
 			"enabled": true,
