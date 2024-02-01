@@ -174,17 +174,6 @@ Create_Json(){
 		"output": "/var/log/sing-box_server/vless_reality.log",
 		"timestamp": true
 	},
-	"route": {
-		"rules": [
-			{
-				"inbound": [
-					"in-vless"
-				],
-				"outbound": "out-direct"
-			}
-		],
-		"final": "out-direct"
-	},
 	"inbounds": [
 		{
 			"type": "vless",
