@@ -208,7 +208,8 @@ Create_Json(){
 	"outbounds": [
 		{
 			"type": "direct",
-			"tag": "out-direct"
+			"tag": "out-direct",
+			"tcp_fast_open": true
 		}
 	]
 }
