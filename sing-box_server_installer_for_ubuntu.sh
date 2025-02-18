@@ -263,7 +263,6 @@ Show_Client_Outbound(){
 		"padding": true,
 		"brutal": {}
 	},
-	"connect_timeout": "5s",
 	"tcp_fast_open": true
 }
 EOF
