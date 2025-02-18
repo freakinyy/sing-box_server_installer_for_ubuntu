@@ -184,7 +184,7 @@ Create_Json(){
 			"users": [
 				{
 					"uuid": "$uuid",
-					"flow": "xtls-rprx-vision"
+					"flow": ""
 				}
 			],
 			"tls": {
@@ -202,14 +202,18 @@ Create_Json(){
 					],
 					"max_time_difference": "1m"
 				}
+			},
+			"multiplex": {
+				"enabled": true,
+				"padding": true,
+				"brutal": {}
 			}
 		}
 	],
 	"outbounds": [
 		{
 			"type": "direct",
-			"tag": "out-direct",
-			"tcp_fast_open": true
+			"tag": "out-direct"
 		}
 	]
 }
@@ -232,9 +236,8 @@ Show_Client_Outbound(){
 	"tag": "out-vless",
 	"server": "$server",
 	"server_port": 443,
-	"tcp_fast_open": true,
 	"uuid": "$uuid",
-	"flow": "xtls-rprx-vision",
+	"flow": "",
 	"tls": {
 		"enabled": true,
 		"disable_sni": false,
@@ -250,7 +253,18 @@ Show_Client_Outbound(){
 			"short_id": "$short_id"
 		}
 	},
-	"packet_encoding": "xudp"
+	"packet_encoding": "xudp",
+	"multiplex": {
+		"enabled": true,
+		"protocol": "smux",
+		"max_connections": 4,
+		"min_streams": 4,
+		"max_streams": 0,
+		"padding": true,
+		"brutal": {}
+	},
+	"connect_timeout": "5s",
+	"tcp_fast_open": true
 }
 EOF
 	echo "#############################################"
