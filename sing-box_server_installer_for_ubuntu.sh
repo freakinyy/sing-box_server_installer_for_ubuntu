@@ -189,11 +189,11 @@ Create_Json(){
 			],
 			"tls": {
 				"enabled": true,
-				"server_name": "d1.awsstatic.com",
+				"server_name": "www.icloud.com",
 				"reality": {
 					"enabled": true,
 					"handshake": {
-						"server": "d1.awsstatic.com",
+						"server": "www.icloud.com",
 						"server_port": 443
 					},
 					"private_key": "$private_key",
@@ -241,7 +241,7 @@ Show_Client_Outbound(){
 	"tls": {
 		"enabled": true,
 		"disable_sni": false,
-		"server_name": "d1.awsstatic.com",
+		"server_name": "www.icloud.com",
 		"insecure": false,
 		"utls": {
 			"enabled": true,
